@@ -7,8 +7,11 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-
-      
+    <%= blogs.length %>
+    <ul>
+      <% Object.keys(blogs).forEach(function(index){ %>
+      <li><%= index %></li>
+      <% }) %>     
     </ul>
   </body>
 </html>

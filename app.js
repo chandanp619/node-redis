@@ -16,7 +16,9 @@ var app = express();
 // 
 var DBURL1 = 'mongodb://dbacp:hobykv2Co3usLXia@clusternode-shard-00-00-brgfz.mongodb.net:27017,clusternode-shard-00-01-brgfz.mongodb.net:27017,clusternode-shard-00-02-brgfz.mongodb.net:27017/redisTest?ssl=true&replicaSet=ClusterNode-shard-0&authSource=admin&retryWrites=true';
 var DBURL2 = 'mongodb+srv://dbacp:hobykv2Co3usLXia@clusternode-brgfz.mongodb.net/redisTest';
-const db = mongoose.connect(DBURL2);
+const db = mongoose.connect(DBURL1, { useNewUrlParser: true } ,function(err,data){
+  if(err) console.log(err);
+});
 
 
 

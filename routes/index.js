@@ -13,7 +13,7 @@ client.on("error", function (err) {
 
 
 client.get("Blogs", function(err, reply) {
-  var XBlogsData = reply;
+  var XBlogsData = reply.replace("\n","");
  if(reply == null){
 
       var BlogModel = require('../model/blog');
