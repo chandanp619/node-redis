@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var redis = require("redis");
+var mongoose = require('mongoose');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -9,15 +10,25 @@ var client = redis.createClient();
 client.on("error", function (err) {
   console.log("Error " + err);
 });
-client.set('status',"Success", redis.print);
-client.set('status',"Success 111", redis.print);
-client.get("status", function(err, reply) {
-  // reply is null when the key is missing
-  console.log(reply);
-});
-client.quit();
 
-  res.render('index', { title: 'Express' });
+
+client.get("Blogs", function(err, reply) {
+  var XBlogsData = reply;
+ if(reply == null){
+
+      var BlogModel = require('../model/blog');
+      BlogModel.find({},function(err,blogsXData){
+          if(err) console.log(err);
+          XBlogsData = blogsXData;
+        client.set('Blogs',blogsXData.toString());
+      });
+ }
+console.log(XBlogsData);
+ res.render('index', { title: 'Express',blogs:XBlogsData });
+});
+//client.quit();
+
+  
 });
 
 

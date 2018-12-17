@@ -14,11 +14,9 @@ var redis = require("redis");
 
 var app = express();
 // 
-// mongodb+srv://dbacp:dboptions@clusternode-brgfz.mongodb.net/redisTest?retryWrites=true
-const db = mongoose.connect('mongodb+srv://dbacp:hobykv2Co3usLXia@clusternode-brgfz.mongodb.net/redisTest?retryWrites=true',{ useNewUrlParser: true } ,function(err){
-  if(err)
-     console.log('Unable to connect database'+err);
-});
+var DBURL1 = 'mongodb://dbacp:hobykv2Co3usLXia@clusternode-shard-00-00-brgfz.mongodb.net:27017,clusternode-shard-00-01-brgfz.mongodb.net:27017,clusternode-shard-00-02-brgfz.mongodb.net:27017/redisTest?ssl=true&replicaSet=ClusterNode-shard-0&authSource=admin&retryWrites=true';
+var DBURL2 = 'mongodb+srv://dbacp:hobykv2Co3usLXia@clusternode-brgfz.mongodb.net/redisTest';
+const db = mongoose.connect(DBURL2);
 
 
 

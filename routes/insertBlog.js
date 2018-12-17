@@ -12,14 +12,7 @@ router.get('/', function(req, res, next) {
     {'title':'Sample Blog Four','content':'4 Sample content goes here.', 'date':new Date().toString(),'status':'published'}
   ];
 
-  const BlogSchema = new mongoose.Schema({
-    'title':String,
-    'content':String,
-    'date':Date,
-    'status':String
-  });
-
-  var BlogModel = mongoose.model('blogModel',BlogSchema,'blog');
+var BlogModel = require('../model/blog');
   BlogModel.insertMany(dataBlog,function(err,data){
     if(err) console.log(err);
 
